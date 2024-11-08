@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-/public/songs
+/public
 
 # next.js
 /.next/
