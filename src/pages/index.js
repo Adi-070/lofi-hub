@@ -4,55 +4,58 @@ const React = require('react')
 const { useState, useEffect, useRef } = React
 const { Play, Pause, SkipForward, SkipBack, Heart, Volume2, Palette, Menu, X } = require('lucide-react')
 
+const s3BaseURL = 'https://lofi-music.s3.eu-north-1.amazonaws.com'
+
 const themes = [
   {
     name: 'Cityscape',
     video: '/background5.mp4',
-    thumbnail: '/Romantic.jpeg',
+    thumbnail: '/Cityscape.png',
     songs: [
-      { id: '1', title: 'Good Night', artist: 'FASSounds', url: '/songs/song1.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '2', title: 'Summer shake', artist: 'DJ burgerhead', url: '/songs/song2.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '3', title: 'Osha Sutherland X A.R.T', artist: 'A.R.T', url: '/songs/song3.mp3', cover: '/placeholder.svg?height=400&width=400' }
+      { id: '1', title: 'Good Night', artist: 'FASSounds', url: `${s3BaseURL}/cityscape/song1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '2', title: 'Summer shake', artist: 'DJ burgerhead', url: `${s3BaseURL}/cityscape/song2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '3', title: 'Osha Sutherland X A.R.T', artist: 'A.R.T', url: `${s3BaseURL}/cityscape/song3.mp3`, cover: '/placeholder.svg?height=400&width=400' }
     ]
   },
   {
     name: 'Nature',
     video: '/nature2.mp4',
-    thumbnail: '/Romantic.jpeg',
+    thumbnail: '/nature.png',
     songs: [
-      { id: '4', title: 'Forest Whispers', artist: 'NatureSounds', url: '/songs/nature1.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '5', title: 'Gentle Stream', artist: 'EcoBeats', url: '/songs/nature2.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '6', title: 'Mountain Air', artist: 'Zen Masters', url: '/songs/nature3.mp3', cover: '/placeholder.svg?height=400&width=400' }
+      { id: '4', title: 'lofi Song - Nature by Lofium', artist: 'Lofium', url: `${s3BaseURL}/nature/nature1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '5', title: 'Lofi seasons - Summer anthem', artist: 'lofi_seasons', url: `${s3BaseURL}/nature/nature2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '6', title: 'Garden Vibes Lofi', artist: 'xethrocc', url: `${s3BaseURL}/nature/nature3.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '7', title: 'Summer Rain - Lofi vibes', artist: 'xethrocc', url: `${s3BaseURL}/nature/nature4.mp3`, cover: '/placeholder.svg?height=400&width=400' }
     ]
   },
   {
     name: 'Sunrise',
     video: '/Sunrise.mp4',
-    thumbnail: '/Romantic.jpeg',
+    thumbnail: '/sunrise.png',
     songs: [
-      { id: '7', title: 'Cosmic Waves', artist: 'Stardust', url: '/songs/space1.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '8', title: 'Nebula Dreams', artist: 'AstroBeats', url: '/songs/space2.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '9', title: 'Interstellar Journey', artist: 'Cosmic Harmony', url: '/songs/space3.mp3', cover: '/placeholder.svg?height=400&width=400' }
+      { id: '8', title: 'Sunrise', artist: 'PremiumMusicOdyssey', url: `${s3BaseURL}/sunrise/sunrise1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '9', title: 'Lofi Large/lofi', artist: 'LofiCosmos', url: `${s3BaseURL}/sunrise/sunrise2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '10', title: 'Lofi Piano "Memories"', artist: 'Akiko_Shina',url: `${s3BaseURL}/sunrise/sunrise3.mp3`, cover: '/placeholder.svg?height=400&width=400' }
     ]
   },
   {
     name: 'Snow',
     video: '/Snoww.mp4',
-    thumbnail: '/Romantic.jpeg',
+    thumbnail: '/snow.png',
     songs: [
-      { id: '10', title: 'Winter Whispers', artist: 'Frostbite', url: '/songs/snow1.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '11', title: 'Icy Melodies', artist: 'Glacier Grooves', url: '/songs/snow2.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '12', title: 'Snowfall Serenade', artist: 'Arctic Ambience', url: '/songs/snow3.mp3', cover: '/placeholder.svg?height=400&width=400' }
+      { id: '11', title: 'Avenue', artist: 'xethrocc', url: `${s3BaseURL}/snow/snow1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '12', title: 'Playa del sol', artist: 'xethrocc', url: `${s3BaseURL}/snow/snow2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '13', title: 'Lofi Song - Kertajina by Lofium', artist: 'Lofium', url: `${s3BaseURL}/snow/snow3.mp3`, cover: '/placeholder.svg?height=400&width=400' }
     ]
   },
   {
     name: 'Campfire',
     video: '/Campfire.mp4',
-    thumbnail: '/Romantic.jpeg',
+    thumbnail: '/campfire.png',
     songs: [
-      { id: '13', title: 'Fireside Acoustic', artist: 'Ember Strings', url: '/songs/campfire1.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '14', title: 'Crackling Lullaby', artist: 'Flame Harmonics', url: '/songs/campfire2.mp3', cover: '/placeholder.svg?height=400&width=400' },
-      { id: '15', title: 'Marshmallow Melodies', artist: 'Bonfire Beats', url: '/songs/campfire3.mp3', cover: '/placeholder.svg?height=400&width=400' }
+      { id: '14', title: 'Lofi Song - Room by Lofium', artist: 'Lofium', url: `${s3BaseURL}/campfire/campfire1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
+      { id: '15', title: 'Crackling Lullaby', artist: 'Flame Harmonics', url: '/songs/campfire2.mp3', cover: '/placeholder.svg?height=400&width=400' },
+      { id: '16', title: 'Marshmallow Melodies', artist: 'Bonfire Beats', url: '/songs/campfire3.mp3', cover: '/placeholder.svg?height=400&width=400' }
     ]
   }
 ]
