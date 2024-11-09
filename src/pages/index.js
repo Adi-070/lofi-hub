@@ -70,13 +70,30 @@ function Home() {
   const [volume, setVolume] = useState(1)
   const [isThemeSidebarOpen, setIsThemeSidebarOpen] = useState(false)
   const [isSongSidebarOpen, setIsSongSidebarOpen] = useState(false)
+  const [videoSrc, setVideoSrc] = useState(currentTheme.video)
   const progressRef = useRef(null)
+
+  
 
   useEffect(() => {
     if (audio) {
+      // Add ended event listener
+      const handleSongEnd = () => {
+        playNext()
+        setIsPlaying(true) // Keep playing state active for next song
+      }
+      
+      audio.addEventListener('ended', handleSongEnd)
+      
+      // Update audio source when song changes
       audio.src = currentSong.url
       if (isPlaying) {
         audio.play()
+      }
+      
+      // Cleanup
+      return () => {
+        audio.removeEventListener('ended', handleSongEnd)
       }
     }
   }, [currentSong, audio])
@@ -90,7 +107,9 @@ function Home() {
   useEffect(() => {
     if (audio) {
       if (isPlaying) {
-        audio.play()
+        audio.play().catch(error => {
+          console.log('Playback failed:', error)
+        })
       } else {
         audio.pause()
       }
@@ -107,6 +126,17 @@ function Home() {
     return () => audio?.removeEventListener('timeupdate', updateProgress)
   }, [audio])
 
+  useEffect(() => {
+    const preloadNextSong = () => {
+      const currentIndex = currentTheme.songs.findIndex(song => song.id === currentSong.id)
+      const nextSong = currentTheme.songs[(currentIndex + 1) % currentTheme.songs.length]
+      new Audio(nextSong.url).load()
+    }
+    preloadNextSong()
+  }, [currentSong, currentTheme])
+  
+
+  
   const handleLike = (songId) => {
     setLikedSongs((prev) => {
       if (prev.includes(songId)) {
@@ -154,6 +184,7 @@ function Home() {
     setCurrentSong(theme.songs[0])
     setIsPlaying(false)
     setIsThemeSidebarOpen(false)
+    setVideoSrc(theme.video) 
   }
 
   const toggleThemeSidebar = () => {
@@ -170,7 +201,8 @@ function Home() {
     <div className="relative min-h-screen flex text-white">
       {/* Background Video */}
       <video 
-        key={currentTheme.video}
+        key={videoSrc}
+        src={videoSrc}
         autoPlay 
         loop 
         muted 
