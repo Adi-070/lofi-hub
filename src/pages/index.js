@@ -9,8 +9,8 @@ const s3BaseURL = 'https://lofi-music.s3.eu-north-1.amazonaws.com'
 const themes = [
   {
     name: 'Cityscape',
-    video: '/background5.mp4',
-    thumbnail: '/Cityscape.png',
+    video: `${s3BaseURL}/videos/background5.mp4`,
+    thumbnail: `${s3BaseURL}/thumbnails/Cityscape.png`,
     songs: [
       { id: '1', title: 'Good Night', artist: 'FASSounds', url: `${s3BaseURL}/cityscape/song1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
       { id: '2', title: 'Summer shake', artist: 'DJ burgerhead', url: `${s3BaseURL}/cityscape/song2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
@@ -19,8 +19,8 @@ const themes = [
   },
   {
     name: 'Nature',
-    video: '/nature2.mp4',
-    thumbnail: '/nature.png',
+    video: `${s3BaseURL}/videos/nature2.mp4`,
+    thumbnail: `${s3BaseURL}/thumbnails/Nature.png`,
     songs: [
       { id: '4', title: 'lofi Song - Nature by Lofium', artist: 'Lofium', url: `${s3BaseURL}/nature/nature1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
       { id: '5', title: 'Lofi seasons - Summer anthem', artist: 'lofi_seasons', url: `${s3BaseURL}/nature/nature2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
@@ -30,8 +30,8 @@ const themes = [
   },
   {
     name: 'Sunrise',
-    video: '/Sunrise.mp4',
-    thumbnail: '/sunrise.png',
+    video: `${s3BaseURL}/videos/Sunrise.mp4`,
+    thumbnail: `${s3BaseURL}/thumbnails/Sunrise.png`,
     songs: [
       { id: '8', title: 'Sunrise', artist: 'PremiumMusicOdyssey', url: `${s3BaseURL}/sunrise/sunrise1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
       { id: '9', title: 'Lofi Large/lofi', artist: 'LofiCosmos', url: `${s3BaseURL}/sunrise/sunrise2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
@@ -40,8 +40,8 @@ const themes = [
   },
   {
     name: 'Snow',
-    video: '/Snoww.mp4',
-    thumbnail: '/snow.png',
+    video: `${s3BaseURL}/videos/Snoww.mp4`,
+    thumbnail: `${s3BaseURL}/thumbnails/Snow.png`,
     songs: [
       { id: '11', title: 'Avenue', artist: 'xethrocc', url: `${s3BaseURL}/snow/snow1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
       { id: '12', title: 'Playa del sol', artist: 'xethrocc', url: `${s3BaseURL}/snow/snow2.mp3`, cover: '/placeholder.svg?height=400&width=400' },
@@ -50,8 +50,8 @@ const themes = [
   },
   {
     name: 'Campfire',
-    video: '/Campfire.mp4',
-    thumbnail: '/campfire.png',
+    video:`${s3BaseURL}/videos/Campfire.mp4`,
+    thumbnail: `${s3BaseURL}/thumbnails/Campfire.png`,
     songs: [
       { id: '14', title: 'Lofi Song - Room by Lofium', artist: 'Lofium', url: `${s3BaseURL}/campfire/campfire1.mp3`, cover: '/placeholder.svg?height=400&width=400' },
       { id: '15', title: 'Crackling Lullaby', artist: 'Flame Harmonics', url: '/songs/campfire2.mp3', cover: '/placeholder.svg?height=400&width=400' },
