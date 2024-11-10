@@ -1,8 +1,11 @@
 'use client'
 
+import ProductivityPanel from '@/components/ProductivityPanel'
+
 const React = require('react')
 const { useState, useEffect, useRef } = React
 const { Play, Pause, SkipForward, SkipBack, Heart, Volume2, Palette, Menu, X } = require('lucide-react')
+
 
 const s3BaseURL = 'https://lofi-music.s3.eu-north-1.amazonaws.com'
 
@@ -215,7 +218,7 @@ function Home() {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-      
+      <ProductivityPanel />
       {/* Theme Sidebar */}
       <div className={`fixed top-0 right-0 h-full w-72 bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg z-30 transform transition-transform duration-300 ease-in-out ${isThemeSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="p-4">
